@@ -105,9 +105,3 @@ def polydivisible(number):
 
 polydivisible(input('write a number '))
 
-def some_for_tetst():
-    pass
-
-def some_for_test_two():
-    pass
-#comment
