@@ -120,9 +120,10 @@ def calculate_damage(your_type, opponent_type, attack, defense):
     water < electric
     grass = electric
     """
-    pass
+    dmg = 50 * (attack / defense) * effictiveness(your_type, opponent_type)
+    return dmg
 
-def types (your_type, opponent_type):
+def effictiveness (your_type, opponent_type):
     coefficient={
         'fire': 1,
         'water': 2,
@@ -130,28 +131,28 @@ def types (your_type, opponent_type):
         'electric': 4
     }
     power_fire={
-        'fire': 1,
+        'fire': 0.5,
         'water': 0.5,
         'grass': 2,
         'electric': 1
     }
     power_water={
         'fire': 2,
-        'water': 1,
+        'water': 0.5,
         'grass': 0.5,
         'electric': 0.5
     }
     power_grass={
         'fire': 0.5,
         'water': 2,
-        'grass': 1,
+        'grass': 0.5,
         'electric': 1
     }
     power_electric={
         'fire': 1,
         'water': 2,
         'grass': 1,
-        'electric': 1
+        'electric': 0.5
     }
 
     if (coefficient.get(your_type)) == 1:
@@ -163,7 +164,29 @@ def types (your_type, opponent_type):
     elif (coefficient.get(your_type)) == 4:
         return power_electric.get(opponent_type)
 
+##print (calculate_damage(your_type=input('your type is '), opponent_type=input('opponent type is '),
+##                        attack=int(input('attack = ')), defense=int(input('defence = '))))
 
-print (types(your_type = input('your_type '), opponent_type = input('opponent_type ')))
+""" very clever solution below
+from math import ceil
 
+D = {"fire": "grass", "water": "fire", "grass": "water", "electric": "water"}
 
+def calculate_damage(a, b, n, m):
+    return ceil(50 * (n / m) * (2 if D[a] == b else 0.5 if D[b] == a or a == b else 1))
+
+also can be simple dictionary if did like below
+effectiveness = {
+    "electric":{
+      "electric": 0.5,
+      "fire": 1,
+      "grass": 1,
+      "water": 2
+    },
+    "fire":{
+      "electric": 1,
+      "fire": 0.5,
+      "grass": 2,
+      "water": 0.5
+    }
+"""
