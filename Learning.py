@@ -168,10 +168,9 @@ def effictiveness (your_type, opponent_type):
 ##                        attack=int(input('attack = ')), defense=int(input('defence = '))))
 
 """ very clever solution below
+
 from math import ceil
-
 D = {"fire": "grass", "water": "fire", "grass": "water", "electric": "water"}
-
 def calculate_damage(a, b, n, m):
     return ceil(50 * (n / m) * (2 if D[a] == b else 0.5 if D[b] == a or a == b else 1))
 
@@ -190,3 +189,42 @@ effectiveness = {
       "water": 0.5
     }
 """
+
+def next_num(number):
+    """Given a non-negative number, return the next bigger polydivisible number,
+     or an empty value like null or Nothing.
+    """
+    for x in range(1, len(number) + 1):
+
+        if (int(number[:x]) % x):
+            print ('not divisible')
+            print('remains=', (int(number[:x]) % x), 'X=', x, 'number=', number[:x])
+            return next_polydivisible(number)
+        ##else:
+            ##print("work\n")
+    return print(number, ' is polydivisible number and divider is ', x)
+
+def next_polydivisible (number):
+    while int(number) <= 3608528850368400786036725:
+        number = str(number)
+        for x in range(1, len(str(number)) + 1):
+            ##print('number for test = ', number[:int(x)])
+            ##print('x = ', x)
+
+            if (int(number[:x]) % x):
+                number = int(number) + 1
+                ##print('number is ', number, ' and type is ', type(number), ' type X is ', type (x))
+                break
+
+            elif (int(number) % len(str(number))) == 0 and x == len(str(number)):
+                print ('what is it = ', (int(number) % x), ' number = ', number, ' x = ', x)
+                return print('next polydivisible number is ', number, 'divider is ', x)
+
+
+    return print ('not enough polydivisible numbers')
+
+for i in range (0, 1, 3608528850368400786036726):
+    next_num(str(i))
+
+
+##next_num(input('write a number '))
