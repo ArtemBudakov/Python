@@ -103,5 +103,67 @@ def polydivisible(number):
     return True
         ##print ("doesn't work" if (int(number[:x]) % x) else 'work')
 
-polydivisible(input('write a number '))
+##polydivisible(input('write a number '))
+
+
+def calculate_damage(your_type, opponent_type, attack, defense):
+    """  Your task is to calculate the damage
+    that a particular move would do using the following formula:
+    Super effective: 2x damage
+    Neutral: 1x damage
+    Not very effective: 0.5x damage
+    damage = 50 * (attack / defense) * effectiveness
+    fire > grass
+    fire < water
+    fire = electric
+    water < grass
+    water < electric
+    grass = electric
+    """
+    pass
+
+def types (your_type, opponent_type):
+    coefficient={
+        'fire': 1,
+        'water': 2,
+        'grass': 3,
+        'electric': 4
+    }
+    power_fire={
+        'fire': 1,
+        'water': 0.5,
+        'grass': 2,
+        'electric': 1
+    }
+    power_water={
+        'fire': 2,
+        'water': 1,
+        'grass': 0.5,
+        'electric': 0.5
+    }
+    power_grass={
+        'fire': 0.5,
+        'water': 2,
+        'grass': 1,
+        'electric': 1
+    }
+    power_electric={
+        'fire': 1,
+        'water': 2,
+        'grass': 1,
+        'electric': 1
+    }
+
+    if (coefficient.get(your_type)) == 1:
+        return power_fire.get(opponent_type)
+    elif (coefficient.get(your_type)) == 2:
+        return power_water.get(opponent_type)
+    elif (coefficient.get(your_type)) == 3:
+        return power_grass.get(opponent_type)
+    elif (coefficient.get(your_type)) == 4:
+        return power_electric.get(opponent_type)
+
+
+print (types(your_type = input('your_type '), opponent_type = input('opponent_type ')))
+
 
