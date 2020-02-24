@@ -198,7 +198,7 @@ def next_num(number):
 
         if (int(number[:x]) % x):
             print ('not divisible')
-            print('remains=', (int(number[:x]) % x), 'X=', x, 'number=', number[:x])
+            print('remains=', (int(number[:x]) % x), 'X=', x, 'number= ', number[:x])
             return next_polydivisible(number)
         ##else:
             ##print("work\n")
@@ -212,7 +212,8 @@ def next_polydivisible (number):
             ##print('x = ', x)
 
             if (int(number[:x]) % x):
-                number = int(number) + 1
+                number = int(number) + 10**int((len(number) - int(x)))
+                ##number = int(number) + 1
                 ##print('number is ', number, ' and type is ', type(number), ' type X is ', type (x))
                 break
 
@@ -223,8 +224,6 @@ def next_polydivisible (number):
 
     return print ('not enough polydivisible numbers')
 
-for i in range (0, 1, 3608528850368400786036726):
-    next_num(str(i))
 
 
-##next_num(input('write a number '))
+next_num(input('write a number '))
