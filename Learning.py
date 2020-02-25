@@ -224,6 +224,27 @@ def next_polydivisible (number):
 
     return print ('not enough polydivisible numbers')
 
+##next_num(input('write a number '))
+
+def non_consecutive_number (array):
+    """my solution"""
+    array = sorted(array)
+    for element_array in array:
+        if (element_array == array[0]):
+            test = array[0]
+            continue
+        if (test != element_array - 1):
+            print(element_array)
+            return element_array
+        test = element_array
+
+def first_non_consecutive(arr):
+    """clever solution"""
+    if not arr: return 0
+    arr = sorted(arr)
+    for i, x in enumerate(arr[:-1]):
+        if x + 1 != arr[i + 1]:
+            return arr[i + 1]
 
 
-next_num(input('write a number '))
+print(first_non_consecutive([-3,-2,0,2,1,-1, 22, 42]))
