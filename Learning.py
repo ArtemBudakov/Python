@@ -1,3 +1,5 @@
+import turtle
+
 ##second degree of every figure from number
 def square_digits(num):
     tmp = ([int(x) * int(x) for x in str(num)])
@@ -247,4 +249,68 @@ def first_non_consecutive(arr):
             return arr[i + 1]
 
 
-print(first_non_consecutive([-3,-2,0,2,1,-1, 22, 42]))
+##print(first_non_consecutive([-3,-2,0,2,1,-1, 22, 42]))
+
+def turtle_square():
+    turtle.forward(90)
+    turtle.left(90)
+    turtle.forward(90)
+    turtle.left(90)
+    turtle.forward(90)
+    turtle.left(90)
+    turtle.forward(90)
+    turtle.left(90)
+
+def turtle_a_circle ():
+    turtle.shape('turtle')
+    for i in range (0,36,1):
+        turtle.forward(20)
+        turtle.right(10)
+
+def turtle_many_squares (N):
+    """nested squares
+        where N - number of squares"""
+    if N==0:
+        return
+    turtle_many_squares(N-1)
+
+    turtle.shape('turtle')
+    turtle.penup()
+    turtle.goto(-10*N, -10*N)
+    turtle.pendown()
+    turtle.forward(10*N*2)
+    turtle.left(90)
+    turtle.forward(10*N*2)
+    turtle.left(90)
+    turtle.forward(10*N*2)
+    turtle.left(90)
+    turtle.forward(10*N*2)
+    turtle.left(90)
+
+##turtle_many_squares(int(input('how much squares do you want?\n')))
+
+def turtle_spider(N, coefficient = False):
+    """where N is number of spider's paws"""
+    if coefficient == False:
+        coefficient = 360/N
+    if N == 0:
+        return
+    turtle_spider(N-1, coefficient)
+
+    turtle.shape("turtle")
+    turtle.right(coefficient)
+    turtle.forward(90)
+    turtle.stamp()
+    turtle.goto(0,0)
+
+def spiral (coef):
+    """just spiral print"""
+    turtle.shape('turtle')
+    for i in range (1, 500, 1):
+        turtle.forward(coef*i/5)
+        turtle.right(15)
+##spiral(0.2)
+
+def spiral_square (coef):
+    """just spiral print"""
+pass
