@@ -314,3 +314,25 @@ def spiral (coef):
 def spiral_square (coef):
     """just spiral print"""
 pass
+
+
+
+def separator_by_two_letters(massage):
+    """my solution with defoult libruary"""
+    tmp = []
+    while (bool(massage) == True):
+        if len(massage) == 1: # instead it could be use if len(s) % 2
+            tmp.append(massage[0]+'_')
+            break
+        tmp.append (massage[0:2])
+        massage = massage[2:]
+    return tmp
+
+"""
+clever solution with regular expansion
+
+import re
+
+def solution(s):
+    return re.findall(".{2}", s + "_")
+"""
