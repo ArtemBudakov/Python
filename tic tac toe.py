@@ -1,3 +1,17 @@
+import pygame
+import sys
+
+blocks = 3
+block_size = 110
+margin = 10
+height = width = block_size
+gray = (80, 80, 80)
+
+size = (370, 370)
+pygame.init()
+screen = pygame.display.set_mode(size)
+pygame.display.set_caption('tic tac toe')
+
 
 field = [
     [0, 1, 0],
@@ -20,7 +34,7 @@ def empty_slot(field):
     for row in range (3):
         for slot in range (3):
             if field[row][slot] == 0:
-                print (row, slot)
+                print(row, slot)
                 empty_slot_count = True
     if empty_slot_count == False:
         return stop_game(field)
@@ -29,8 +43,23 @@ def empty_slot(field):
 
 def game():
     while True:
-        empty_slot(field)
+        #empty_slot(field)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit(0)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                x_mouse, y_mouse = pygame.mouse.get_pos()
+                #print(f'x={x_mouse}, y={y_mouse}')
+                coloumn = x_mouse //(width + margin)
+                row = y_mouse //(height + margin)
+        for row in range(3):
+            for col in range(3):
 
+                x = col * width + (col + 1) * margin
+                y = row * height + (row + 1) * margin
+                pygame.draw.rect(screen, gray, (x, y, width, height))
+        pygame.display.update()
 
 def check_win(field):
     for row in field:
@@ -50,3 +79,6 @@ def stop_game(field):
     if resoult == None:
         return print('drown game')
     return resoult
+
+
+game ()
