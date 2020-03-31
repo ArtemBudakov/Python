@@ -9,6 +9,7 @@ gray = (80, 80, 80)
 blue = (0, 0, 255)
 red = (255, 0, 0)
 purple = (145, 119, 163)
+black = (255, 255, 255)
 
 size = (370, 470)
 pygame.init()
@@ -22,6 +23,7 @@ field = [
     [0, 0, 0]
 ]
 
+
 def start():
     global player
     player = True
@@ -33,33 +35,39 @@ def start():
     ]
     return
 
+
+def py_screen(color, x, y, width, height, geometry):
+    pygame.draw.rect(screen, color, (x, y, width, height))
+
+
 def game():
     while True:
-        for row in range(3): #drawing
+        for row in range(3):   # drawing
             for col in range(3):
                 x = col * width + (col + 1) * margin
-                y = row * height + (row + 1) * margin # 100 for button "start again"
+                y = row * height + (row + 1) * margin  # 100 for button "start again"
                 if field[row][col] == 0:
                     color = gray
                 elif field[row][col] == 1:
                     color = red
+                    pygame.draw.aaline(screen, black, (x + 10, y + 10), (x + 90, y + 90))
                 else:
                     color = blue
                 pygame.draw.rect(screen, color, (x, y, width, height))
-        pygame.draw.rect(screen, purple, (10, 370, 350, 90)) #button "start again"
+        pygame.draw.rect(screen, purple, (10, 370, 350, 90))  # button "start again"
         pygame.display.update()
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: #exit
+            if event.type == pygame.QUIT:  # exit
                 pygame.quit()
                 sys.exit(0)
-            elif event.type == pygame.MOUSEBUTTONDOWN: #button click
+            elif event.type == pygame.MOUSEBUTTONDOWN:  # button click
                 global player
                 x_mouse, y_mouse = pygame.mouse.get_pos()
                 column = int(x_mouse //(width + margin))
                 row = int(y_mouse //(height + margin))
-                #print(f'x={x_mouse}, y={y_mouse}')
-                #print(row, column, 'field is', field[row][column], 'player is', player)
+                # print(f'x={x_mouse}, y={y_mouse}')
+                # print(row, column, 'field is', field[row][column], 'player is', player)
                 if field[row][column] == 0 and player == True:
                     player = False
                     field[row][column] = 1
@@ -98,5 +106,6 @@ def check_win(field):
 
     return
 
+
 start()
-game ()
+game()
